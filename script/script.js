@@ -3,6 +3,9 @@ var form = document.querySelector("#form-pesquisa")
 form.addEventListener("submit", function(event){
     event.preventDefault()
 
+    var aberto = document.getElementById("henry")
+    aberto.className = "aberto"
+
     var nome = document.querySelector("input[name=pesquisa]").value
     var url = "https://pokeapi.co/api/v2/pokemon/"+ nome
 
