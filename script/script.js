@@ -1,13 +1,45 @@
 var form = document.querySelector("#form-pesquisa")
+var maisBtn = document.querySelector("#saiba")
+var num = Math.floor(Math.random() * 1008);
 
-form.addEventListener("submit", function(event){
+document.addEventListener("DOMContentLoaded", function(event) {
     event.preventDefault()
 
     var aberto = document.getElementById("henry")
     aberto.className = "aberto"
 
+    var url = "https://pokeapi.co/api/v2/pokemon/"+ num
+
+    fetch(url)
+        .then(function(response){
+            return response.json()
+        })
+
+        .then(function(data){
+            console.log(data)
+
+            var Dimg = document.querySelector("#pokeday-img")
+            var Dname = document.querySelector("#pokeday-btn")
+
+            Dimg.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 300px;'>"
+            Dname.innerHTML = "<p>" + data.name + "</p>"
+        })    
+
+})
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault()
     var nome = document.querySelector("input[name=pesquisa]").value
-    var url = "https://pokeapi.co/api/v2/pokemon/"+ nome
+    procura(nome)
+})
+
+maisBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    procura(num)
+})
+
+function procura (x){
+    var url = "https://pokeapi.co/api/v2/pokemon/"+ x
 
     console.log (url)
 
@@ -25,14 +57,14 @@ form.addEventListener("submit", function(event){
             var imagem = document.querySelector("#pokemon-img")
 
             conteudo.innerHTML = "<p>" + data.name + "</p>"
-            imagem.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img'>"
+            imagem.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 300px;'>"
             data.types.forEach((tipos) => {
                 var nome = tipos.type.name
                 conteudo.innerHTML +="<p> Tipo: " + nome + "</p>"
             })
             conteudo.innerHTML += "<p> ID: "+ data.id +"</p>"
-            altura.innerHTML = "<p>"+(data.height / 10)+"m </p>"  
-            peso.innerHTML = "<p>"+(data.weight / 10)+"Kg </p>"
+            altura.innerHTML += "<p>"+(data.height / 10)+"m </p>"  
+            peso.innerHTML += "<p>"+(data.weight / 10)+"Kg </p>"
 
             if (data.id <= 151){
                 conteudo.innerHTML += "<p>1º Geração</p>"
@@ -56,4 +88,4 @@ form.addEventListener("submit", function(event){
                 
 
         })
-})
+}
