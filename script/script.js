@@ -5,9 +5,6 @@ var num = Math.floor(Math.random() * 1008);
 document.addEventListener("DOMContentLoaded", function(event) {
     event.preventDefault()
 
-    var aberto = document.getElementById("henry")
-    aberto.className = "aberto"
-
     var url = "https://pokeapi.co/api/v2/pokemon/"+ num
 
     fetch(url)
@@ -21,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var Dimg = document.querySelector("#pokeday-img")
             var Dname = document.querySelector("#pokeday-btn")
 
-            Dimg.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 300px;'>"
+            Dimg.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 250px;'>"
             Dname.innerHTML = "<p>" + data.name + "</p>"
         })    
 
@@ -29,12 +26,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 form.addEventListener("submit", function(event) {
     event.preventDefault()
+    var aberto = document.getElementById("henry")
+    aberto.className = "aberto"
     var nome = document.querySelector("input[name=pesquisa]").value
     procura(nome)
 })
 
 maisBtn.addEventListener("click", function(event) {
     event.preventDefault()
+    var aberto = document.getElementById("henry")
+    aberto.className = "aberto"
     procura(num)
 })
 

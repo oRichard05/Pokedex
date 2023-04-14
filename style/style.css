@@ -109,8 +109,16 @@ header figure img{
     border: 1px solid black;
 }
 
+#pokay-saiba {
+    background-color: var(--cor-fundodivs);
+}
+
 #pokemais img{
     width: 300px;
+}
+
+#pokeday-img {
+    height: 100px;
 }
 
 #pokemais-txt{
@@ -129,6 +137,12 @@ header figure img{
 #pokeday{
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
+}
+
+.pokeday-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #txt-day{
