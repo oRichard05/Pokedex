@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var Dname = document.querySelector("#pokeday-btn")
 
             Dimg.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 250px;'>"
-            Dname.innerHTML = "<p>" + data.name + "</p>"
+            Dname.innerHTML = "<p>" + data.name.toUpperCase() + "</p>"
         })    
 
 })
@@ -56,16 +56,25 @@ function procura (x){
             var altura = document.querySelector("#altura")
             var conteudo = document.querySelector("#conteudo")
             var imagem = document.querySelector("#pokemon-img")
+            var conteudoall = document.querySelector("#conteudoall")
 
-            conteudo.innerHTML = "<p>" + data.name + "</p>"
+            conteudoall.innerHTML = "<h3 class='pokenome'>" + data.name.toUpperCase() + "</h3>"
             imagem.innerHTML ="<img src='"+data.sprites.front_default+"' alt='' id='pk-img' style='width: 300px;'>"
+            conteudo.innerHTML = "<p> ID: "+ data.id +"</p>"
             data.types.forEach((tipos) => {
                 var nome = tipos.type.name
-                conteudo.innerHTML +="<p> Tipo: " + nome + "</p>"
+                conteudo.innerHTML +="<p id='tip'> Tipo: " + nome + "</p>"
+            
+                conteudo.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr 1fr' 
+                if (tipos.slot <2){
+                    conteudo.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr'
+                }
+                
+
             })
-            conteudo.innerHTML += "<p> ID: "+ data.id +"</p>"
-            altura.innerHTML += "<p>"+(data.height / 10)+"m </p>"  
-            peso.innerHTML += "<p>"+(data.weight / 10)+"Kg </p>"
+
+            conteudo.innerHTML += "<p> Altura: "+(data.height / 10)+"m </p>"  
+            conteudo.innerHTML += "<p> Peso: "+(data.weight / 10)+"Kg </p>"
 
             if (data.id <= 151){
                 conteudo.innerHTML += "<p>1º Geração</p>"
